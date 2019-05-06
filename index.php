@@ -90,8 +90,9 @@
           img.style.marginLeft = img.style.marginRight
                                = (100 - parseInt(width)) / 2 + '%';
         });
-        document.getElementById('iframe').contentDocument
-              .getElementsByTagName('img').forEach(function(img) {
+        Array.from(
+            document.getElementById('iframe').contentDocument
+              .getElementsByTagName('img')).forEach(function(img) {
           img.style.width = width + '%';
           img.style.marginLeft = img.style.marginRight
                                = (100 - parseInt(width)) / 2 + '%';
@@ -105,8 +106,6 @@
         if (!images.every( img => img.getAttribute('status') ))
           return;
 
-        reloadPages = false;
-
         var container = document.getElementById('container');
         container.innerHTML = '';
         images.sort((x, y) => x.getAttribute('idx') - y.getAttribute('idx'));
@@ -117,6 +116,8 @@
         });
 
         resizePages();
+
+        reloadPages = false;
       };
       setInterval(showPages, 1);
 

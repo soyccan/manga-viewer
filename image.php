@@ -10,12 +10,12 @@ function resize() {
 <body>
 <?php
 if ($_GET['url'] && $_GET['chapter']) {
-    $result = exec(
-        'python dm5dl.py -d '
+    $cmd =
+        'bin/python dm5dl.py -d '
         . escapeshellarg($_GET['url'])
         . ' '
-        . escapeshellarg($_GET['chapter']));
-    $result = json_decode($result);
+        . escapeshellarg($_GET['chapter']);
+    $result = json_decode(exec($cmd));
     $referer = $result->referer;
     $image_urls = $result->image_urls;
 
